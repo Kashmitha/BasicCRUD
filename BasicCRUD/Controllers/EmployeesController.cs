@@ -74,5 +74,21 @@ namespace BasicCRUD.Controllers
             dbContext.SaveChanges();
             return Ok(employee);
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public IActionResult DeleteEmployee(Guid id)
+        {
+            var employee = dbContext.Employees.FirstOrDefault(x => x.Id == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            dbContext.Employees.Remove(employee);
+            dbContext.SaveChanges();
+
+            return Ok(employee);
+        }
     }
 }
