@@ -23,5 +23,16 @@ namespace BasicCRUD.Controllers
 
             return Ok(allEmployees);
         }
+        [HttpGet]
+        [Route("{id:guid}")]
+        public IActionResult GetEmployeeById(Guid id)
+        {
+            var employee = dbContext.Employees.FirstOrDefault(x => x.Id == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return Ok(employee);
+        }
     }
 }
