@@ -20,6 +20,8 @@ namespace BasicCRUD.Controllers
         public IActionResult GetAllEmployees()
         {
             var allEmployees = dbContext.Employees.ToList();
+
+            return Ok(allEmployees);
         }
     }
 }
